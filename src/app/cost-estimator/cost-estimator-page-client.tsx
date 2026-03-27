@@ -97,15 +97,17 @@ export function CostEstimatorPageClient({
                 What do you need care for?
               </label>
               <div className="relative">
-                <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+                <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
                 <select
                   value={selectedVisit}
                   onChange={(e) => setSelectedVisit(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-neutral-200 text-sm bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent appearance-none disabled:opacity-50"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-white/10 text-sm bg-white/[0.04] focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent appearance-none disabled:opacity-50"
                   disabled={loading}
                 >
                   {mockVisitTypes.map((type) => (
-                    <option key={type} value={type}>{type}</option>
+                    <option key={type} value={type} className="bg-neutral-100 text-charcoal">
+                      {type}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -118,12 +120,12 @@ export function CostEstimatorPageClient({
               <button
                 onClick={() => setInNetwork(!inNetwork)}
                 disabled={loading}
-                className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50 text-sm disabled:opacity-50"
+                className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl border border-white/10 bg-white/[0.04] text-sm disabled:opacity-50"
               >
                 {inNetwork ? (
                   <ToggleRight size={20} className="text-accent" />
                 ) : (
-                  <ToggleLeft size={20} className="text-neutral-400" />
+                  <ToggleLeft size={20} className="text-neutral-500" />
                 )}
                 <span className={inNetwork ? "text-charcoal font-medium" : "text-neutral-500"}>
                   {inNetwork ? "In-Network" : "Out-of-Network"}
@@ -155,24 +157,24 @@ export function CostEstimatorPageClient({
                   <button
                     onClick={() => setSelectedSettingKey(isSelected ? null : option.settingKey)}
                     className={`card-base w-full text-left transition-all duration-200 ${
-                      isSelected
-                        ? "ring-2 ring-charcoal border-charcoal"
-                        : "hover:border-neutral-300"
+                      isSelected ? "ring-2 ring-accent border-accent" : "hover:border-white/20"
                     }`}
                   >
                     <div className="flex items-center gap-3 mb-4">
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        isSelected ? "bg-charcoal text-white" : "bg-neutral-50 text-neutral-500"
-                      }`}>
+                      <div
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                          isSelected ? "bg-accent text-white" : "bg-white/[0.04] text-neutral-500"
+                        }`}
+                      >
                         <Icon size={18} />
                       </div>
-                      <h3 className="text-sm font-semibold">{option.setting}</h3>
+                      <h3 className="text-sm font-semibold text-charcoal">{option.setting}</h3>
                     </div>
 
                     <div className="space-y-2 mb-4">
                       <div className="flex justify-between text-xs">
                         <span className="text-neutral-500">Est. total</span>
-                        <span className="font-medium">{formatCurrency(option.baseCost)}</span>
+                        <span className="font-medium text-charcoal">{formatCurrency(option.baseCost)}</span>
                       </div>
                       <div className="flex justify-between text-xs">
                         <span className="text-neutral-500">Insurance pays</span>
@@ -184,8 +186,8 @@ export function CostEstimatorPageClient({
                       </div>
                     </div>
 
-                    <div className="pt-3 border-t border-neutral-100">
-                      <div className="flex items-center gap-1.5 text-xs text-neutral-400 mb-1">
+                    <div className="pt-3 border-t border-white/8">
+                      <div className="flex items-center gap-1.5 text-xs text-neutral-500 mb-1">
                         <Clock size={12} />
                         <span>Wait: {option.waitTime}</span>
                       </div>
@@ -204,13 +206,13 @@ export function CostEstimatorPageClient({
           <div className="card-base">
             <div className="flex items-center gap-3 mb-6">
               <CheckCircle2 size={18} className="text-accent" />
-              <h3 className="section-title">Cost Breakdown â€” {selectedOption.setting}</h3>
+              <h3 className="section-title">Cost Breakdown - {selectedOption.setting}</h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="p-4 rounded-lg bg-neutral-50 text-center">
-                <p className="text-xs text-neutral-500 mb-1">Estimated Total</p>
-                <p className="text-2xl font-semibold">{formatCurrency(selectedOption.baseCost)}</p>
+              <div className="p-4 rounded-lg bg-white/[0.04] border border-white/8 text-center">
+                <p className="text-xs text-neutral-400 mb-1">Estimated Total</p>
+                <p className="text-2xl font-semibold text-charcoal">{formatCurrency(selectedOption.baseCost)}</p>
               </div>
               <div className="p-4 rounded-lg bg-success-muted text-center">
                 <p className="text-xs text-success mb-1">Insurance Covers</p>
@@ -222,19 +224,19 @@ export function CostEstimatorPageClient({
               </div>
             </div>
 
-            <div className="p-4 rounded-lg bg-neutral-50 border border-neutral-100">
-              <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wide mb-2">Assumptions</p>
+            <div className="p-4 rounded-lg bg-white/[0.04] border border-white/8">
+              <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-2">Assumptions</p>
               <ul className="space-y-1 text-xs text-neutral-600">
-                <li className="flex items-start gap-1.5"><span className="text-neutral-300 mt-0.5">â€¢</span> Using {inNetwork ? "in-network" : "out-of-network"} provider</li>
-                <li className="flex items-start gap-1.5"><span className="text-neutral-300 mt-0.5">â€¢</span> Based on current deductible progress</li>
-                <li className="flex items-start gap-1.5"><span className="text-neutral-300 mt-0.5">â€¢</span> Standard visit without additional procedures</li>
-                <li className="flex items-start gap-1.5"><span className="text-neutral-300 mt-0.5">â€¢</span> Regional average pricing for {selectedVisit.toLowerCase()}</li>
+                <li className="flex items-start gap-1.5"><span className="text-neutral-400 mt-0.5">•</span> Using {inNetwork ? "in-network" : "out-of-network"} provider</li>
+                <li className="flex items-start gap-1.5"><span className="text-neutral-400 mt-0.5">•</span> Based on current deductible progress</li>
+                <li className="flex items-start gap-1.5"><span className="text-neutral-400 mt-0.5">•</span> Standard visit without additional procedures</li>
+                <li className="flex items-start gap-1.5"><span className="text-neutral-400 mt-0.5">•</span> Regional average pricing for {selectedVisit.toLowerCase()}</li>
               </ul>
             </div>
 
             <div className="mt-4 flex items-center gap-2">
               <StatusBadge label="Medium confidence" variant="warning" />
-              <span className="text-xs text-neutral-400">Actual costs may vary by provider and services rendered</span>
+              <span className="text-xs text-neutral-500">Actual costs may vary by provider and services rendered</span>
             </div>
           </div>
         </AnimateIn>

@@ -13,7 +13,7 @@ const variantStyles: Record<BadgeVariant, string> = {
   success: "bg-success-muted text-success",
   warning: "bg-warning-muted text-warning",
   danger: "bg-danger-muted text-danger",
-  neutral: "bg-neutral-100 text-neutral-600",
+  neutral: "bg-white/6 text-neutral-500 border border-white/10",
 };
 
 export function StatusBadge({ label, variant = "neutral", className }: StatusBadgeProps) {

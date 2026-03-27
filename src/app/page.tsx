@@ -84,10 +84,10 @@ export default async function DashboardPage() {
               strokeWidth={8}
             />
             <div>
-              <p className="text-sm text-neutral-500">Individual Deductible</p>
+              <p className="text-sm text-neutral-400">Individual Deductible</p>
               <p className="text-xl font-semibold">
                 {formatCurrency(plan.deductibleMetIndiv)}{" "}
-                <span className="text-sm font-normal text-neutral-500">
+                <span className="text-sm font-normal text-neutral-400">
                   of {formatCurrency(plan.deductibleIndiv)}
                 </span>
               </p>
@@ -113,10 +113,10 @@ export default async function DashboardPage() {
               strokeWidth={8}
             />
             <div>
-              <p className="text-sm text-neutral-500">Out-of-Pocket Max</p>
+              <p className="text-sm text-neutral-400">Out-of-Pocket Max</p>
               <p className="text-xl font-semibold">
                 {formatCurrency(plan.oopSpentIndiv)}{" "}
-                <span className="text-sm font-normal text-neutral-500">
+                <span className="text-sm font-normal text-neutral-400">
                   of {formatCurrency(plan.oopMaxIndiv)}
                 </span>
               </p>
@@ -179,7 +179,7 @@ export default async function DashboardPage() {
                   href={action.href}
                   className="card-base flex flex-col items-center gap-2.5 py-5 text-center group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white border border-neutral-100 shadow-sm flex items-center justify-center text-neutral-400 group-hover:bg-accent group-hover:border-accent group-hover:text-white transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(58,134,255,0.3)] group-hover:-translate-y-1">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 shadow-sm flex items-center justify-center text-neutral-500 group-hover:bg-accent group-hover:border-accent group-hover:text-white transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(79,140,255,0.3)] group-hover:-translate-y-1">
                     <Icon size={18} />
                   </div>
                   <span className="text-xs font-medium text-neutral-600">{action.label}</span>
@@ -202,11 +202,11 @@ export default async function DashboardPage() {
                 </div>
                 <h3 className="section-title">AI Assistant</h3>
               </div>
-              <p className="text-sm text-neutral-500 mb-4">
+              <p className="text-sm text-neutral-400 mb-4">
                 Ask about symptoms, care costs, coverage details, or compare treatment options.
               </p>
             </div>
-            <div className="flex items-center gap-2 p-3 rounded-xl bg-white border border-neutral-100 shadow-sm group-hover:bg-accent/10 group-hover:text-accent group-hover:border-accent/30 transition-all duration-300">
+            <div className="flex items-center gap-2 p-3 rounded-xl bg-white/[0.04] border border-white/10 shadow-sm group-hover:bg-accent/10 group-hover:text-accent group-hover:border-accent/30 transition-all duration-300">
               <MessageSquare size={14} />
               <span className="text-sm">Ask a question about your healthcare costs...</span>
               <ArrowRight size={14} className="ml-auto" />
@@ -217,7 +217,7 @@ export default async function DashboardPage() {
           <div className="card-base">
             <h3 className="section-title mb-4">Upcoming Care</h3>
             {upcomingReminders.length === 0 ? (
-              <p className="text-sm text-neutral-500">No upcoming care reminders.</p>
+              <p className="text-sm text-neutral-400">No upcoming care reminders.</p>
             ) : (
               <div className="space-y-3">
                 {upcomingReminders.map((reminder: any) => (
@@ -225,14 +225,14 @@ export default async function DashboardPage() {
                     <div className="mt-0.5">
                       {reminder.status === "completed" && <CheckCircle2 size={16} className="text-success" />}
                       {reminder.status === "overdue" && <AlertCircle size={16} className="text-danger" />}
-                      {reminder.status === "upcoming" && <Calendar size={16} className="text-neutral-400" />}
+                      {reminder.status === "upcoming" && <Calendar size={16} className="text-neutral-500" />}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-base font-bold text-[#111111]">{reminder.title}</p>
-                      <p className="text-xs text-neutral-400">{reminder.type}</p>
+                      <p className="text-base font-bold text-charcoal">{reminder.title}</p>
+                      <p className="text-xs text-neutral-500">{reminder.type}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-neutral-500">
+                      <p className="text-xs text-neutral-400">
                         {new Date(reminder.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                       </p>
                       <StatusBadge
@@ -259,20 +259,20 @@ export default async function DashboardPage() {
           <div className="card-base">
             <h3 className="section-title mb-4">Recent Activity</h3>
             {recentActivity.length === 0 ? (
-              <p className="text-sm text-neutral-500">No recent activity.</p>
+              <p className="text-sm text-neutral-400">No recent activity.</p>
             ) : (
               <div className="space-y-3">
                 {recentActivity.map((activity: any) => {
                   const Icon = iconMap[activity.icon] || FileText;
                   return (
                     <div key={activity.id} className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white border border-neutral-100 shadow-sm flex items-center justify-center">
-                        <Icon size={14} className="text-neutral-400" />
+                      <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 shadow-sm flex items-center justify-center">
+                        <Icon size={14} className="text-neutral-500" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm text-charcoal truncate">{activity.label}</p>
                       </div>
-                      <span className="text-xs text-neutral-400 whitespace-nowrap flex items-center gap-1">
+                      <span className="text-xs text-neutral-500 whitespace-nowrap flex items-center gap-1">
                         <Clock size={12} /> {activity.time}
                       </span>
                     </div>
@@ -286,29 +286,29 @@ export default async function DashboardPage() {
           <Link href="/insurance" className="card-base group">
             <div className="flex items-center justify-between mb-4">
               <h3 className="section-title">Insurance Plan</h3>
-              <ArrowRight size={16} className="text-neutral-400 group-hover:text-white transition-colors" />
+              <ArrowRight size={16} className="text-neutral-500 group-hover:text-accent-light transition-colors" />
             </div>
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-neutral-500">Plan</span>
+                <span className="text-sm text-neutral-400">Plan</span>
                 <span className="text-sm font-medium">{plan.name}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-neutral-500">Type</span>
+                <span className="text-sm text-neutral-400">Type</span>
                 <StatusBadge label={plan.type} variant="accent" />
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-neutral-500">Coinsurance</span>
+                <span className="text-sm text-neutral-400">Coinsurance</span>
                 <span className="text-sm font-medium">{plan.coinsuranceIn}% in-network</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-neutral-500">PCP Copay</span>
+                <span className="text-sm text-neutral-400">PCP Copay</span>
                 <span className="text-sm font-medium">
                   {formatCurrency(JSON.parse(plan.copays || "{}").primaryCare || 0)}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-neutral-500">Telehealth</span>
+                <span className="text-sm text-neutral-400">Telehealth</span>
                 <span className="text-sm font-medium">
                   {formatCurrency(JSON.parse(plan.copays || "{}").telehealth || 0)}
                 </span>

@@ -29,7 +29,7 @@ export function ProgressRing({
   const getColor = () => {
     if (percent >= 80) return "#DC2626";
     if (percent >= 50) return "#D97706";
-    return "#2563EB";
+    return "#4F8CFF";
   };
 
   return (
@@ -40,7 +40,7 @@ export function ProgressRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#E5E5E5"
+          stroke="#283241"
           strokeWidth={strokeWidth}
         />
         <circle
@@ -59,7 +59,7 @@ export function ProgressRing({
       {label && (
         <div className="text-center -mt-1">
           <p className="text-sm font-medium text-charcoal">{label}</p>
-          {sublabel && <p className="text-xs text-neutral-400">{sublabel}</p>}
+          {sublabel && <p className="text-xs text-neutral-500">{sublabel}</p>}
         </div>
       )}
     </div>

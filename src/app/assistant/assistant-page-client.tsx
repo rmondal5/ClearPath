@@ -27,32 +27,32 @@ function ConfidenceBadge({ level }: { level: string }) {
 
 function StrategyCard({ option }: { option: StrategyOption }) {
   return (
-    <div className={`rounded-xl border p-4 ${option.recommended ? "border-accent/30 bg-accent/5" : "border-neutral-200 bg-neutral-50/70"}`}>
+    <div className={`rounded-xl border p-4 ${option.recommended ? "border-accent/30 bg-accent/8" : "border-white/10 bg-white/[0.03]"}`}>
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-sm font-semibold text-charcoal">{option.label}</p>
-          <p className="text-xs text-neutral-500 mt-1">{option.whyItFitsUser}</p>
+          <p className="text-xs text-neutral-400 mt-1">{option.whyItFitsUser}</p>
         </div>
         {option.recommended ? <StatusBadge label="Recommended" variant="accent" /> : <StatusBadge label={option.feasibility} variant={option.feasibility === "high" ? "success" : option.feasibility === "medium" ? "warning" : "danger"} />}
       </div>
 
       <div className="grid grid-cols-2 gap-3 mt-4">
-        <div className="rounded-lg bg-white border border-neutral-200 px-3 py-2">
-          <p className="text-[11px] uppercase tracking-wide text-neutral-400">Monthly</p>
+        <div className="rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2">
+          <p className="text-[11px] uppercase tracking-wide text-neutral-500">Monthly</p>
           <p className="text-sm font-semibold text-charcoal">{formatCurrency(option.monthlyCost)}</p>
         </div>
-        <div className="rounded-lg bg-white border border-neutral-200 px-3 py-2">
-          <p className="text-[11px] uppercase tracking-wide text-neutral-400">Total</p>
+        <div className="rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2">
+          <p className="text-[11px] uppercase tracking-wide text-neutral-500">Total</p>
           <p className="text-sm font-semibold text-charcoal">{formatCurrency(option.totalCost)}</p>
         </div>
       </div>
 
       {option.requiredActions.length > 0 && (
         <div className="mt-3">
-          <p className="text-[11px] uppercase tracking-wide text-neutral-400 mb-1">Required actions</p>
+          <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-1">Required actions</p>
           <ul className="space-y-1">
             {option.requiredActions.map((action, index) => (
-              <li key={index} className="text-xs text-neutral-600">
+              <li key={index} className="text-xs text-neutral-500">
                 - {action}
               </li>
             ))}
@@ -66,43 +66,43 @@ function StrategyCard({ option }: { option: StrategyOption }) {
 function StructuredResponseCard({ data, onFollowUp }: { data: StructuredResponse; onFollowUp: (q: string) => void }) {
   return (
     <div className="space-y-4 mt-3">
-      <div className="p-4 rounded-xl bg-accent/5 border border-accent/20">
+      <div className="p-4 rounded-xl bg-accent/8 border border-accent/20">
         <div className="flex items-center gap-2 mb-2">
           <BadgeDollarSign size={15} className="text-accent" />
-          <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Recommended Strategy</span>
+          <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Recommended Strategy</span>
         </div>
         <p className="text-sm font-medium text-charcoal">{data.recommendedStrategy}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-100">
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8">
           <div className="flex items-center gap-2 mb-2">
             <NotebookPen size={14} className="text-neutral-500" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Situation</span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Situation</span>
           </div>
           <p className="text-sm text-charcoal leading-relaxed">{data.situationSummary}</p>
         </div>
-        <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-100">
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8">
           <div className="flex items-center gap-2 mb-2">
             <TriangleAlert size={14} className="text-warning" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Bill Assessment</span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Bill Assessment</span>
           </div>
           <p className="text-sm text-charcoal leading-relaxed">{data.billAssessment}</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-100">
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8">
           <div className="flex items-center gap-2 mb-2">
             <ShieldCheck size={14} className="text-accent" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Insurance</span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Insurance</span>
           </div>
           <p className="text-sm text-charcoal leading-relaxed">{data.insuranceAssessment}</p>
         </div>
-        <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-100">
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8">
           <div className="flex items-center gap-2 mb-2">
             <PiggyBank size={14} className="text-success" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Financial Fit</span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Financial Fit</span>
           </div>
           <p className="text-sm text-charcoal leading-relaxed">{data.financialAssessment}</p>
         </div>
@@ -111,8 +111,8 @@ function StructuredResponseCard({ data, onFollowUp }: { data: StructuredResponse
       {data.strategyOptions.length > 0 && (
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <ListChecks size={14} className="text-neutral-400" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Strategy Options</span>
+            <ListChecks size={14} className="text-neutral-500" />
+            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Strategy Options</span>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {data.strategyOptions.map((option) => (
@@ -123,10 +123,10 @@ function StructuredResponseCard({ data, onFollowUp }: { data: StructuredResponse
       )}
 
       {data.immediateNextSteps.length > 0 && (
-        <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-100">
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8">
           <div className="flex items-center gap-2 mb-2">
-            <ListChecks size={14} className="text-neutral-400" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Immediate Next Steps</span>
+            <ListChecks size={14} className="text-neutral-500" />
+            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Immediate Next Steps</span>
           </div>
           <ul className="space-y-1.5">
             {data.immediateNextSteps.map((step, index) => (
@@ -139,10 +139,10 @@ function StructuredResponseCard({ data, onFollowUp }: { data: StructuredResponse
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-100">
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8">
           <div className="flex items-center gap-2 mb-2">
-            <ListChecks size={14} className="text-neutral-400" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Assumptions</span>
+            <ListChecks size={14} className="text-neutral-500" />
+            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Assumptions</span>
           </div>
           {data.assumptions.length > 0 ? (
             <ul className="space-y-1">
@@ -153,13 +153,13 @@ function StructuredResponseCard({ data, onFollowUp }: { data: StructuredResponse
               ))}
             </ul>
           ) : (
-            <p className="text-xs text-neutral-400">No major assumptions noted.</p>
+            <p className="text-xs text-neutral-500">No major assumptions noted.</p>
           )}
         </div>
-        <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-100">
+        <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8">
           <div className="flex items-center gap-2 mb-2">
             <TriangleAlert size={14} className="text-warning" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-500">Missing Information</span>
+            <span className="text-xs font-semibold uppercase tracking-wide text-neutral-400">Missing Information</span>
           </div>
           {data.missingInformation.length > 0 ? (
             <ul className="space-y-1">
@@ -170,18 +170,18 @@ function StructuredResponseCard({ data, onFollowUp }: { data: StructuredResponse
               ))}
             </ul>
           ) : (
-            <p className="text-xs text-neutral-400">No critical gaps identified.</p>
+            <p className="text-xs text-neutral-500">No critical gaps identified.</p>
           )}
         </div>
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2">
-          <Gauge size={14} className="text-neutral-400" />
+          <Gauge size={14} className="text-neutral-500" />
           <ConfidenceBadge level={data.confidenceLevel} />
         </div>
         {data.documentsReferenced.map((document) => (
-          <span key={`${document.type}-${document.id}`} className="inline-flex items-center gap-1 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs text-neutral-500">
+          <span key={`${document.type}-${document.id}`} className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-neutral-500">
             <FileStack size={12} />
             {document.label}
           </span>
@@ -194,7 +194,7 @@ function StructuredResponseCard({ data, onFollowUp }: { data: StructuredResponse
             <button
               key={i}
               onClick={() => onFollowUp(q)}
-              className="px-3 py-1.5 rounded-full border border-neutral-200 text-xs text-neutral-600 hover:bg-charcoal hover:text-white hover:border-charcoal transition-colors duration-150"
+              className="px-3 py-1.5 rounded-full border border-white/10 text-xs text-neutral-500 hover:bg-accent/10 hover:text-neutral-900 hover:border-accent/30 transition-colors duration-150"
             >
               {q}
             </button>
@@ -266,14 +266,14 @@ export function AssistantPageClient({
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="px-6 py-4 border-b border-neutral-200 bg-white">
+      <div className="px-6 py-4 border-b border-white/8 bg-neutral-100/70 backdrop-blur-xl">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-accent-muted flex items-center justify-center">
             <Sparkles size={16} className="text-accent" />
           </div>
           <div>
             <h1 className="text-lg font-semibold tracking-tight">AI Assistant</h1>
-            <p className="text-xs text-neutral-400">Financially aware medical-bill guidance using your plan, bills, EOBs, and cash-flow context</p>
+            <p className="text-xs text-neutral-500">Financially aware medical-bill guidance using your plan, bills, EOBs, and cash-flow context</p>
           </div>
         </div>
       </div>
@@ -281,7 +281,7 @@ export function AssistantPageClient({
       <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
         {activeBillId && (
           <AnimateIn>
-            <div className="rounded-2xl border border-accent/20 bg-accent/5 px-4 py-3">
+            <div className="rounded-2xl border border-accent/20 bg-accent/8 px-4 py-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-1">Bill context active</p>
               <p className="text-sm text-charcoal">{activeBillLabel}</p>
             </div>
@@ -290,13 +290,13 @@ export function AssistantPageClient({
 
         <AnimateIn>
           <div className="mb-6">
-            <p className="text-xs font-medium text-neutral-400 uppercase tracking-wide mb-3">Suggested Questions</p>
+            <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-3">Suggested Questions</p>
             <div className="flex flex-wrap gap-2">
               {mockSuggestedQuestions.map((q, i) => (
                 <button
                   key={i}
                   onClick={() => sendMessage(q)}
-                  className="px-3 py-1.5 rounded-full border border-neutral-200 text-xs text-neutral-600 hover:bg-charcoal hover:text-white hover:border-charcoal transition-colors duration-150"
+                  className="px-3 py-1.5 rounded-full border border-white/10 text-xs text-neutral-500 hover:bg-accent/10 hover:text-neutral-900 hover:border-accent/30 transition-colors duration-150"
                 >
                   {q}
                 </button>
@@ -316,7 +316,7 @@ export function AssistantPageClient({
               <div className={`max-w-3xl ${msg.role === "user" ? "order-first" : ""}`}>
                 <div
                   className={`rounded-xl px-4 py-3 ${
-                    msg.role === "user" ? "bg-charcoal text-white" : "bg-white border border-neutral-200"
+                    msg.role === "user" ? "bg-accent text-white" : "bg-white/[0.04] border border-white/10"
                   }`}
                 >
                   <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.content}</p>
@@ -324,7 +324,7 @@ export function AssistantPageClient({
                 {msg.structuredResponse && <StructuredResponseCard data={msg.structuredResponse} onFollowUp={sendMessage} />}
               </div>
               {msg.role === "user" && (
-                <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center flex-shrink-0 mt-1">
+                <div className="w-8 h-8 rounded-full bg-white/[0.05] flex items-center justify-center flex-shrink-0 mt-1">
                   <User size={14} className="text-neutral-500" />
                 </div>
               )}
@@ -339,10 +339,10 @@ export function AssistantPageClient({
                 <Sparkles size={14} className="text-accent" />
               </div>
               <div className="max-w-2xl">
-                <div className="rounded-xl px-4 py-3 bg-white border border-neutral-200 flex items-center gap-1 h-[46px]">
-                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-300 animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-300 animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-300 animate-bounce" style={{ animationDelay: "300ms" }} />
+                <div className="rounded-xl px-4 py-3 bg-white/[0.04] border border-white/10 flex items-center gap-1 h-[46px]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-bounce" style={{ animationDelay: "300ms" }} />
                 </div>
               </div>
             </div>
@@ -351,7 +351,7 @@ export function AssistantPageClient({
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="px-6 py-4 border-t border-neutral-200 bg-white">
+      <div className="px-6 py-4 border-t border-white/8 bg-neutral-100/70 backdrop-blur-xl">
         <form
           className="flex items-center gap-3 max-w-4xl mx-auto"
           onSubmit={(e) => {
@@ -359,7 +359,7 @@ export function AssistantPageClient({
             sendMessage(input);
           }}
         >
-          <button type="button" className="p-2 rounded-lg text-neutral-400 hover:text-charcoal hover:bg-neutral-50 transition-colors">
+          <button type="button" className="p-2 rounded-lg text-neutral-500 hover:text-charcoal hover:bg-white/[0.04] transition-colors">
             <Paperclip size={18} />
           </button>
           <input
@@ -368,12 +368,12 @@ export function AssistantPageClient({
             onChange={(e) => setInput(e.target.value)}
             disabled={loading}
             placeholder={activeBillId ? "Ask how to handle this bill, compare it to the EOB, or evaluate payment options..." : "Ask about costs, coverage, bills, or payment strategies..."}
-            className="flex-1 px-4 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-50 placeholder:text-neutral-400 disabled:opacity-50"
+            className="flex-1 px-4 py-2.5 rounded-xl border border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent bg-white/[0.04] placeholder:text-neutral-500 disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={loading || !input.trim()}
-            className="p-2.5 rounded-xl bg-charcoal text-white hover:bg-charcoal-light transition-colors disabled:opacity-50"
+            className="p-2.5 rounded-xl bg-accent text-white hover:bg-accent-hover transition-colors disabled:opacity-50"
           >
             <Send size={16} />
           </button>

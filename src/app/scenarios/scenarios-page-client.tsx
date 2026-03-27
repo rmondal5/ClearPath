@@ -149,14 +149,14 @@ export function ScenariosPageClient({
 
       <AnimateIn delay={0.05}>
         <div className="card-base mb-6">
-          <label className="text-base font-bold text-[#111111] mb-2 block">Select Procedure</label>
+          <label className="text-base font-bold text-charcoal mb-2 block">Select Procedure</label>
           <div className="relative">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
             <select
               value={selectedProcedure}
               onChange={(e) => setSelectedProcedure(e.target.value)}
               disabled={loading}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-neutral-200 text-sm bg-white text-[#111111] focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent appearance-none disabled:opacity-50 mt-1 shadow-sm"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-white/10 text-sm bg-white/[0.04] text-charcoal focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent appearance-none disabled:opacity-50 mt-1 shadow-sm"
             >
               {mockProcedures.map((procedure) => (
                 <option key={procedure} value={procedure}>{procedure}</option>
@@ -180,7 +180,7 @@ export function ScenariosPageClient({
           <AnimateIn delay={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
               <div className="card-base text-center">
-                <p className="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-1">Total Estimated Cost</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-1">Total Estimated Cost</p>
                 <p className="text-2xl font-bold text-charcoal">{formatCurrency(scenario.totalEstimatedCost)}</p>
               </div>
               <div className="card-base text-center bg-success/10 border-success/20">
@@ -192,7 +192,7 @@ export function ScenariosPageClient({
                 <p className="text-2xl font-bold text-accent-light">{formatCurrency(scenario.userResponsibility)}</p>
               </div>
               <div className="card-base text-center">
-                <p className="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-1">Financial Strain</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-1">Financial Strain</p>
                 <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${scenario.financialStrainLevel === "high" ? "bg-danger/20 text-danger border border-danger/20" : scenario.financialStrainLevel === "moderate" ? "bg-warning/20 text-warning border border-warning/20" : "bg-success/20 text-success border border-success/20"} text-xs font-bold mt-1 shadow-sm`}>
                   <AlertTriangle size={14} />
                   {scenario.financialStrainLevel === "high" ? "High Strain" : scenario.financialStrainLevel === "moderate" ? "Moderate Strain" : "Low Strain"}
@@ -218,7 +218,7 @@ export function ScenariosPageClient({
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm gap-8">
                       <span className="text-neutral-500">HSA Available</span>
-                      <span className="font-bold text-[#111111]">{formatCurrency(scenario.hsaAvailable)}</span>
+                      <span className="font-bold text-charcoal">{formatCurrency(scenario.hsaAvailable)}</span>
                     </div>
                     <div className="flex justify-between text-sm gap-8">
                       <span className="text-neutral-500">Recommended Use</span>
@@ -226,7 +226,7 @@ export function ScenariosPageClient({
                     </div>
                     <div className="flex justify-between text-sm gap-8">
                       <span className="text-neutral-500">Remaining After</span>
-                      <span className="font-bold text-[#111111]">{formatCurrency(scenario.hsaAvailable - scenario.hsaRecommended)}</span>
+                      <span className="font-bold text-charcoal">{formatCurrency(scenario.hsaAvailable - scenario.hsaRecommended)}</span>
                     </div>
                   </div>
                 </div>
@@ -238,9 +238,9 @@ export function ScenariosPageClient({
                   <h3 className="section-title">Monthly Impact</h3>
                 </div>
                 <div className="text-center py-4">
-                  <p className="text-5xl font-bold text-[#111111] drop-shadow-sm">{scenario.monthlyImpactPercent}%</p>
+                  <p className="text-5xl font-bold text-charcoal drop-shadow-sm">{scenario.monthlyImpactPercent}%</p>
                   <p className="text-sm text-neutral-500 mt-2">of monthly income</p>
-                  <p className="text-xs text-neutral-400 mt-2">
+                  <p className="text-xs text-neutral-500 mt-2">
                     Based on a 12-month payment plan at {scenario.financingAPR}% APR
                   </p>
                 </div>
@@ -261,17 +261,17 @@ export function ScenariosPageClient({
                     key={plan.id}
                     onClick={() => handleSelectPlan(plan.id)}
                     className={`card-base text-left transition-all duration-300 ${
-                      isSelected ? "ring-2 ring-accent border-accent bg-accent/10 shadow-[0_0_30px_rgba(58,134,255,0.2)]" : "hover:border-neutral-200 hover:bg-white/50"
+                      isSelected ? "ring-2 ring-accent border-accent bg-accent/10 shadow-[0_0_30px_rgba(79,140,255,0.2)]" : "hover:border-white/20 hover:bg-white/[0.03]"
                     }`}
                   >
                     <div className="flex items-start gap-3 mb-3">
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors shadow-sm border ${
-                        isSelected ? "bg-accent text-white border-transparent" : "bg-white border-neutral-100 text-neutral-400"
+                        isSelected ? "bg-accent text-white border-transparent" : "bg-white/[0.04] border-white/8 text-neutral-500"
                       }`}>
                         <Icon size={20} />
                       </div>
                       <div className="flex-1 mt-1">
-                        <h4 className="text-base font-extrabold text-[#111111]">{plan.label}</h4>
+                        <h4 className="text-base font-extrabold text-charcoal">{plan.label}</h4>
                         <p className="text-xs text-accent mt-0.5 font-medium">{plan.duration}</p>
                         {typeof plan.apr === "number" && (
                           <p className="text-xs text-neutral-500 mt-1">{plan.apr}% APR</p>
@@ -283,15 +283,15 @@ export function ScenariosPageClient({
                     <div className="flex justify-between items-end mb-4">
                       <div>
                         <p className="text-xs text-neutral-500">Monthly</p>
-                        <p className="text-2xl font-bold text-[#111111]">{formatCurrency(plan.monthlyAmount)}<span className="text-sm font-bold text-neutral-500 tracking-wide">/mo</span></p>
+                        <p className="text-2xl font-bold text-charcoal">{formatCurrency(plan.monthlyAmount)}<span className="text-sm font-bold text-neutral-500 tracking-wide">/mo</span></p>
                       </div>
                       <div className="text-right">
                         <p className="text-xs text-neutral-500">Total Cost</p>
-                        <p className="text-base font-extrabold text-[#111111]">{formatCurrency(plan.totalCost)}</p>
+                        <p className="text-base font-extrabold text-charcoal">{formatCurrency(plan.totalCost)}</p>
                       </div>
                     </div>
 
-                    <p className="text-xs text-neutral-500 pt-3 border-t border-neutral-100 leading-relaxed">
+                    <p className="text-xs text-neutral-500 pt-3 border-t border-white/8 leading-relaxed">
                       {plan.description}
                     </p>
                   </button>

@@ -265,7 +265,7 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
       {/* Global Universal Upload Dropzone */}
       <AnimateIn delay={0.05}>
         <div className={`card-base mb-8 relative overflow-hidden group border-2 transition-all duration-500 py-12 ${
-          isGlobalLoading ? "border-accent shadow-[0_0_40px_rgba(58,134,255,0.2)] bg-accent/5 backdrop-blur-2xl" : "border-dashed border-neutral-200 hover:border-accent hover:bg-white/50"
+          isGlobalLoading ? "border-accent shadow-[0_0_40px_rgba(79,140,255,0.2)] bg-accent/8 backdrop-blur-2xl" : "border-dashed border-white/10 hover:border-accent hover:bg-white/[0.03]"
         }`}>
           {!isGlobalLoading && (
             <input 
@@ -278,12 +278,12 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
 
           {isGlobalLoading ? (
             <div className="flex flex-col items-center justify-center w-full relative">
-              <div className="relative w-28 h-36 bg-white border border-neutral-100 rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
+              <div className="relative w-28 h-36 bg-white/[0.04] border border-white/10 rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
                  <FileText size={48} className="text-neutral-300" />
                  
                  {/* Glowing Laser Scan Line */}
                  <motion.div 
-                   className="absolute left-0 right-0 h-1 bg-accent shadow-[0_0_20px_4px_rgba(58,134,255,0.8)] z-20"
+                   className="absolute left-0 right-0 h-1 bg-accent shadow-[0_0_20px_4px_rgba(79,140,255,0.8)] z-20"
                    animate={{ top: ["0%", "100%", "0%"] }}
                    transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
                  />
@@ -321,7 +321,7 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
 
       {/* Core Policy Document (Singleton) */}
       <div className="mb-10">
-        <h2 className="text-xl font-bold text-[#111111] tracking-tight mb-4 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-charcoal tracking-tight mb-4 flex items-center gap-2">
           <Shield className="text-accent" size={20} /> Active Insurance Policy
         </h2>
         
@@ -363,7 +363,7 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
             </div>
           </AnimateIn>
         ) : (
-          <div className="py-8 px-6 border-2 border-dashed border-neutral-200 rounded-2xl bg-white/50 flex flex-col items-center">
+          <div className="py-8 px-6 border-2 border-dashed border-white/10 rounded-2xl bg-white/[0.03] flex flex-col items-center">
              <Shield size={32} className="text-neutral-300 mb-3" />
              <p className="text-sm font-bold text-neutral-600 tracking-wide">No Active Policy Uploaded</p>
           </div>
@@ -372,14 +372,14 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
 
       {/* ACTIVE Relational Claims Section */}
       <div className="mb-12">
-        <h2 className="text-xl font-bold text-[#111111] tracking-tight mb-4 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-charcoal tracking-tight mb-4 flex items-center gap-2">
           <FileText className="text-neutral-600" size={20} /> Active Medical Claims
         </h2>
 
         {loading && activeClaims.length === 0 && unlinkedEobs.length === 0 ? (
            <Skeleton className="h-64 w-full" />
         ) : activeClaims.length === 0 && unlinkedEobs.length === 0 ? (
-           <div className="py-12 border-2 border-dashed border-neutral-200 rounded-2xl bg-white/50 flex flex-col items-center text-center">
+           <div className="py-12 border-2 border-dashed border-white/10 rounded-2xl bg-white/[0.03] flex flex-col items-center text-center">
              <Receipt size={40} className="text-neutral-300 mb-4" />
              <p className="text-base font-bold text-neutral-400">No Active Claims</p>
              <p className="text-sm text-neutral-500 mt-2 max-w-xs leading-relaxed">Upload medical bills and Explanation of Benefits statements above. AI will automatch them.</p>
@@ -390,17 +390,17 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
             {/* Display Claims (Bills + Linked EOBs) */}
             {activeClaims.map((claim, idx) => (
                <AnimateIn key={claim.bill.id} delay={0.1 + idx * 0.05}>
-                  <div className="card-base p-0 overflow-hidden border border-neutral-100 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] bg-white">
-                    <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
+                  <div className="card-base p-0 overflow-hidden border border-white/10 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.25)] bg-transparent">
+                    <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/8">
                        
                        {/* Left Side: Medical Bill */}
                        <div className="p-6 flex flex-col bg-transparent">
                           <div className="flex items-center gap-3 mb-4">
-                             <div className="w-10 h-10 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-600">
+                             <div className="w-10 h-10 rounded-lg bg-white/[0.04] flex items-center justify-center text-neutral-600">
                                 <FileText size={20} />
                              </div>
                              <div className="flex-1 min-w-0">
-                                <h4 className="font-extrabold text-[#111111] text-base truncate">{claim.bill.name}</h4>
+                                <h4 className="font-extrabold text-charcoal text-base truncate">{claim.bill.name}</h4>
                                 <p className="text-xs text-neutral-400 mt-0.5">Medical Bill • {claim.bill.fileSize}</p>
                              </div>
                              <div className="flex items-center gap-2">
@@ -422,7 +422,7 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
                           
                           {/* Settle Claim Action */}
                           {claim.bill.status === "ready" && (
-                            <div className="mt-6 pt-4 border-t border-neutral-100">
+                            <div className="mt-6 pt-4 border-t border-white/8">
                                <Link
                                   href={`/assistant?billId=${encodeURIComponent(claim.bill.id)}&label=${encodeURIComponent(claim.bill.name)}`}
                                   className="mb-2 w-full flex items-center justify-center gap-2 text-xs font-medium text-accent bg-accent/5 hover:bg-accent/10 py-2 rounded-lg transition-colors"
@@ -445,7 +445,7 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
                           {claim.eob ? (
                              // Render Linked EOB
                              <div className="flex-1 flex flex-col">
-                                <div className="absolute top-5 -left-[14px] bg-white border border-neutral-100 p-1 rounded-full text-accent shadow-sm z-10 hidden md:block">
+                                <div className="absolute top-5 -left-[14px] bg-white/[0.04] border border-white/10 p-1 rounded-full text-accent shadow-sm z-10 hidden md:block">
                                   <LinkIcon size={14} />
                                 </div>
                                 <div className="flex items-center gap-3 mb-4">
@@ -453,7 +453,7 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
                                       <Receipt size={20} />
                                    </div>
                                    <div className="flex-1 min-w-0 flex items-center gap-2">
-                                      <h4 className="font-extrabold text-[#111111] text-base truncate">{claim.eob.name}</h4>
+                                      <h4 className="font-extrabold text-charcoal text-base truncate">{claim.eob.name}</h4>
                                       <span className="bg-success text-white text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider flex-shrink-0">Linked</span>
                                    </div>
                                    
@@ -492,7 +492,7 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
                                 {unlinkedEobs.length > 0 && (
                                    <div className="w-full max-w-[240px]">
                                       <select 
-                                        className="w-full text-sm border-neutral-200 rounded-lg focus:ring-accent focus:border-accent py-2 px-3 shadow-sm bg-white disabled:opacity-50"
+                                        className="w-full text-sm border border-white/10 rounded-lg focus:ring-accent focus:border-accent py-2 px-3 shadow-sm bg-white/[0.04] disabled:opacity-50"
                                         onChange={(e) => handleLink(claim.bill.id, e.target.value)}
                                         value=""
                                         disabled={linking}
@@ -519,13 +519,13 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
                  <h3 className="text-sm font-bold text-neutral-500 uppercase tracking-wider mb-5">Unassigned EOBs</h3>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                    {unlinkedEobs.map((eob) => (
-                      <div key={eob.id} className="card-base border border-neutral-100 bg-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)]">
+                      <div key={eob.id} className="card-base border border-white/10 bg-transparent shadow-[0_4px_20px_-2px_rgba(0,0,0,0.25)]">
                          <div className="flex items-center gap-3 mb-4">
-                             <div className="w-10 h-10 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-600">
+                             <div className="w-10 h-10 rounded-lg bg-white/[0.04] flex items-center justify-center text-neutral-600">
                                 <Receipt size={20} />
                              </div>
                              <div className="flex-1 min-w-0">
-                                <h4 className="font-extrabold text-[#111111] text-base truncate">{eob.name}</h4>
+                                <h4 className="font-extrabold text-charcoal text-base truncate">{eob.name}</h4>
                                 <p className="text-xs text-neutral-400 mt-0.5">Unlinked EOB • {eob.fileSize}</p>
                              </div>
                              <div className="flex items-center gap-2">
@@ -543,10 +543,10 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
                           {renderExtractedData(eob, eob.extractedData ? JSON.parse(eob.extractedData) : null)}
 
                           {unlinkedBills.length > 0 && (
-                            <div className="mt-4 pt-4 border-t border-neutral-100">
+                            <div className="mt-4 pt-4 border-t border-white/8">
                                <p className="text-xs font-semibold text-charcoal mb-2">Link manually to unassigned Bill:</p>
                                <select 
-                                  className="w-full text-sm border-neutral-200 rounded-lg focus:ring-accent focus:border-accent py-2 px-3 shadow-sm bg-white disabled:opacity-50"
+                                  className="w-full text-sm border border-white/10 rounded-lg focus:ring-accent focus:border-accent py-2 px-3 shadow-sm bg-white/[0.04] disabled:opacity-50"
                                   onChange={(e) => handleLink(e.target.value, eob.id)}
                                   value=""
                                   disabled={linking}
@@ -570,14 +570,14 @@ export function DocumentsPageClient({ initialDocuments }: { initialDocuments: an
 
       {/* ARCHIVED Claims Section */}
       {settledClaims.length > 0 && (
-        <div className="pt-8 border-t border-neutral-200">
+        <div className="pt-8 border-t border-white/10">
           <h2 className="text-lg font-semibold text-neutral-500 mb-4 flex items-center gap-2">
             <Archive className="text-neutral-400" size={20} /> Settled & Archived Claims
           </h2>
           <div className="space-y-4 opacity-70 hover:opacity-100 transition-opacity">
             {settledClaims.map((claim, idx) => (
-               <div key={claim.bill.id} className="card-base p-0 overflow-hidden border border-neutral-200 bg-white">
-                 <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
+               <div key={claim.bill.id} className="card-base p-0 overflow-hidden border border-white/10 bg-transparent">
+                 <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/8">
                     
                     {/* Left Side: Medical Bill */}
                     <div className="p-4 px-5">

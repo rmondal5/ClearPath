@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  /* Crisp Light Palette */
-  --color-ivory: #FDFDFD;
-  --color-ivory-warm: #FFF9F9;
-  --color-charcoal: #09090B;
-  --color-charcoal-light: #18181B;
-  --color-charcoal-muted: #27272A;
+  /* Professional dark palette */
+  --color-ivory: #f5f7fa;
+  --color-ivory-warm: #e7edf5;
+  --color-charcoal: #f4f7fb;
+  --color-charcoal-light: #dbe4f0;
+  --color-charcoal-muted: #9ba9bc;
 
-  /* Accent - Vibrant Purple/Orange Gradient Theme */
-  --color-accent: #8B5CF6;
-  --color-accent-light: #A78BFA;
-  --color-accent-hover: #7C3AED;
-  --color-accent-muted: rgba(139, 92, 246, 0.1);
+  /* Accent */
+  --color-accent: #4f8cff;
+  --color-accent-light: #8ab4ff;
+  --color-accent-hover: #3a78ea;
+  --color-accent-muted: rgba(79, 140, 255, 0.16);
 
   /* Semantic */
   --color-success: #10B981;
@@ -22,17 +22,17 @@
   --color-danger: #EF4444;
   --color-danger-muted: rgba(239, 68, 68, 0.1);
 
-  /* Crisp neutral scale for extreme contrast on white cards */
-  --color-neutral-50: #FAFAFA;
-  --color-neutral-100: #E4E4E7; 
-  --color-neutral-200: #D4D4D8;
-  --color-neutral-300: #A1A1AA;
-  --color-neutral-400: #71717A;
-  --color-neutral-500: #52525B;
-  --color-neutral-600: #3F3F46;
-  --color-neutral-700: #27272A;
-  --color-neutral-800: #18181B;
-  --color-neutral-900: #09090B;
+  /* Neutral scale tuned for dark surfaces */
+  --color-neutral-50: #151a22;
+  --color-neutral-100: #1b2330;
+  --color-neutral-200: #283241;
+  --color-neutral-300: #3a4658;
+  --color-neutral-400: #6f7b8d;
+  --color-neutral-500: #94a0b2;
+  --color-neutral-600: #b7c2d0;
+  --color-neutral-700: #d5deea;
+  --color-neutral-800: #e8eef7;
+  --color-neutral-900: #f8fbff;
 
   /* Typography */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -47,9 +47,9 @@
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
 
-  /* Shadows: Floating & Soft */
-  --shadow-card: 0 20px 40px -10px rgba(0, 0, 0, 0.05), 0 0 2px rgba(0,0,0,0.03);
-  --shadow-card-hover: 0 30px 40px -12px rgba(0, 0, 0, 0.08), 0 0 3px rgba(0,0,0,0.03);
+  /* Shadows */
+  --shadow-card: 0 24px 60px -24px rgba(0, 0, 0, 0.6), 0 10px 24px -16px rgba(15, 23, 42, 0.45);
+  --shadow-card-hover: 0 28px 70px -24px rgba(0, 0, 0, 0.72), 0 12px 28px -16px rgba(15, 23, 42, 0.55);
 }
 
 @layer base {
@@ -65,28 +65,40 @@
 
   body {
     @apply text-charcoal font-sans;
-    background-color: #EEF2F0; /* Pale enterprise gray/mint matching reference */
+    background:
+      radial-gradient(circle at top, rgba(79, 140, 255, 0.14), transparent 30%),
+      linear-gradient(180deg, #0c1118 0%, #0b0f15 48%, #090d12 100%);
     font-feature-settings: "cv11", "ss01";
     position: relative;
     overflow-x: hidden;
   }
 
-  /* Removed mesh gradient to match clean enterprise flat reference from user */
   body::before {
-    display: none;
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 85%);
+    pointer-events: none;
+    opacity: 0.35;
   }
 }
 
 @layer components {
   .card-base {
-    @apply rounded-[20px] bg-white p-6 relative overflow-visible;
-    border: 1px solid rgba(0, 0, 0, 0.03); /* Extremely soft edge */
-    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05), 0 0 10px -2px rgba(0, 0, 0, 0.02);
+    @apply rounded-[20px] p-6 relative overflow-visible;
+    background: linear-gradient(180deg, rgba(25, 32, 42, 0.96), rgba(16, 22, 31, 0.94));
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(14px);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .card-base:hover {
-    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.08), 0 0 15px -3px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-card-hover);
     transform: translateY(-2px);
   }
 
@@ -99,7 +111,7 @@
   }
 
   .section-subtitle {
-    @apply text-sm text-neutral-500;
+    @apply text-sm text-neutral-400;
   }
 
   .badge {
@@ -120,5 +132,13 @@
 
   .badge-danger {
     @apply bg-danger-muted text-danger;
+  }
+
+  .surface-subtle {
+    @apply rounded-xl border border-white/8 bg-white/[0.03];
+  }
+
+  .input-dark {
+    @apply border border-white/10 bg-neutral-50 text-neutral-800 placeholder:text-neutral-400;
   }
 }
